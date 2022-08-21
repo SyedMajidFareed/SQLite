@@ -1,21 +1,30 @@
 package com.example.sql_example;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     // creating variables for our edittext, button and dbhelper
+    ListView listview;
     private EditText studentNameEdt, studentRollEdt;
     private Button addStudentBtn, viewAllStudentsBtn, deleteStudentBtn, updateStudentBtn;
     private DbHelper dbHandler;
@@ -29,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         updateStudentBtn = findViewById(R.id.button2);
         deleteStudentBtn = findViewById(R.id.button3);
         viewAllStudentsBtn = findViewById(R.id.button4);
+
+        MyViewAdapter adapter = new MyViewAdapter(this, studentArrayList);
+        ListView listView = findViewById(R.id.list1);
+        listview.setAdapter(adapter);
+
         // creating a new dbhelper class
         // and passing our context to it.
         dbHandler = new DbHelper(MainActivity.this);
@@ -55,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Student has been added.", Toast.LENGTH_SHORT).show();
                 studentNameEdt.setText("");
                 studentRollEdt.setText("");
+            }
+        });
+        viewAllStudentsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // opening a new activity via a intent.
+                Intent i = new Intent(MainActivity.this, CustomizedListView.class);
+                startActivity(i);
             }
         });
     }
