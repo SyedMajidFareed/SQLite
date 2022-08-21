@@ -56,32 +56,31 @@ class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
     // we have created a new method for reading all the courses.
-    public ArrayList<Student> readCourses() {
+    public ArrayList<Student> readStudents() {
         // on below line we are creating a
-        // database for reading our database.
+        // readable database for reading our database.
         SQLiteDatabase db = this.getReadableDatabase();
 
         // on below line we are creating a cursor with query to read data from database.
-        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Cursor cursorStudents = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         // on below line we are creating a new array list.
-        ArrayList<Student> courseModalArrayList = new ArrayList<>();
+        ArrayList<Student> studentArrayList = new ArrayList<>();
 
         // moving our cursor to first position.
-        /*if (cursorCourses.moveToFirst()) {
+        if (cursorStudents.moveToFirst()) {
             do {
                 // on below line we are adding the data from cursor to our array list.
-                courseModalArrayList.add(new Student(cursorCourses.getString(1),
-                        cursorCourses.getString(4),
-                        cursorCourses.getString(2),
-                        cursorCourses.getString(3)));
-            } while (cursorCourses.moveToNext());
+                studentArrayList.add(new Student(cursorStudents.getInt(1),
+                        cursorStudents.getString(2),
+                        cursorStudents.getString(3)));
+            } while (cursorStudents.moveToNext());
             // moving our cursor to next.
         }
         // at last closing our cursor
         // and returning our array list.
-        cursorCourses.close();*/
-        return courseModalArrayList;
+        cursorStudents.close();
+        return studentArrayList;
     }
 
 }
