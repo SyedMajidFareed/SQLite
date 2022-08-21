@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     // creating variables for our edittext, button and dbhelper
-    ListView listview;
+
     private EditText studentNameEdt, studentRollEdt;
     private Button addStudentBtn, viewAllStudentsBtn, deleteStudentBtn, updateStudentBtn;
     private DbHelper dbHandler;
@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
         deleteStudentBtn = findViewById(R.id.button3);
         viewAllStudentsBtn = findViewById(R.id.button4);
 
-        MyViewAdapter adapter = new MyViewAdapter(this, studentArrayList);
-        ListView listView = findViewById(R.id.list1);
-        listview.setAdapter(adapter);
+
 
         // creating a new dbhelper class
         // and passing our context to it.

@@ -2,8 +2,6 @@ package com.example.sql_example;
 
 public class Student {
     private int Id;
-
-
     private String Student_Name;
     private String Student_Roll;
 
