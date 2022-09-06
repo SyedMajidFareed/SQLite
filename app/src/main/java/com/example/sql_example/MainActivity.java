@@ -27,25 +27,23 @@ public class MainActivity extends AppCompatActivity {
     // creating variables for our edittext, button and dbhelper
 
     private EditText studentNameEdt, studentRollEdt;
-    private Button addStudentBtn, viewAllStudentsBtn;//, deleteStudentBtn, updateStudentBtn;
-    private DbHelper dbHandler;
+    private Button addStudentBtn, viewAllStudentsBtn;
+    private DBHelper dbHandler;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        studentNameEdt = findViewById(R.id.editText1);
-        studentRollEdt = findViewById(R.id.editText2);
-        addStudentBtn = findViewById(R.id.button);
-        //updateStudentBtn = findViewById(R.id.button2);
-        //deleteStudentBtn = findViewById(R.id.button3);
-        viewAllStudentsBtn = findViewById(R.id.button4);
-        listView = findViewById(R.id.list12);
+        studentNameEdt = findViewById(R.id.editTextName);
+        studentRollEdt = findViewById(R.id.editTextRollNumber);
+        addStudentBtn = findViewById(R.id.buttonAdd);
+        viewAllStudentsBtn = findViewById(R.id.buttonViewAll);
+        listView = findViewById(R.id.listViewStudent);
 
 
         // creating a new dbhelper class
         // and passing our context to it.
-        dbHandler = new DbHelper(MainActivity.this);
+        dbHandler = new DBHelper(MainActivity.this);
 
         //onClickListeners
         addStudentBtn.setOnClickListener(new View.OnClickListener() {
@@ -87,15 +85,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //DBHelper dbHelper = new DBHelper(MainActivity.this);
-                //List<StudentModel> list = dbHelper.getAllStudents();
-//                ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
-//                        (MainActivity.this, android.R.layout.simple_list_item_1,list);
-//                listViewStudent.setAdapter(arrayAdapter);
-                ArrayList<Student> ListViewArray =  dbHandler.readStudents();
+                List<Student> list = dbHandler.readStudents();
+               ArrayAdapter arrayAdapter = new ArrayAdapter<Student>
+                        (MainActivity.this, android.R.layout.simple_list_item_1,list);
+                listView.setAdapter(arrayAdapter);
+                /*ArrayList<Student> ListViewArray =  dbHandler.readStudents();
 
                 StudentAdapter adapter = new StudentAdapter(getBaseContext(), ListViewArray);
                 ListView listView = findViewById(R.id.listViewStudent);
                 listView.setAdapter(adapter);
+
+                 */
             }
         });
     }

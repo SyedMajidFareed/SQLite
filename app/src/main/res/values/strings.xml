@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sql_Example</string>
+    <string name="ButtonViewAll">View All</string>
+    <string name="Add">Add</string>
+    <string name="StudentName">Enter Name</string>
+    <string name="RollNumber">Enter Roll Number</string>
 </resources>

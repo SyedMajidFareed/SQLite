@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class StudentAdapter extends ArrayAdapter<Student> {
-    int click=0;
     public StudentAdapter(@NonNull Context context, ArrayList<Student> ListViewArray) {
         super(context, R.layout.customlistview, ListViewArray);
     }
@@ -27,38 +26,34 @@ public class StudentAdapter extends ArrayAdapter<Student> {
 
         Student list = getItem(position);
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.customlistview, parent, false);
-        TextView Name = convertView.findViewById(R.id.listnametxtview);
-        TextView Rollnum = convertView.findViewById(R.id.listrolltxtview);
+        TextView Name = convertView.findViewById(R.id.Name);
+        TextView Rollnum = convertView.findViewById(R.id.RollNum);
         //TextView EditName = convertView.findViewById(R.id.EditName);
-        Button del = convertView.findViewById(R.id.delbtn);
-        Button Update = convertView.findViewById(R.id.upbtn);
+        Button del = convertView.findViewById(R.id.delete);
+        Button Update = convertView.findViewById(R.id.Edit);
         //Button Cancel= convertView.findViewById(R.id.cancel);
         //TextView EditRollnum = convertView.findViewById(R.id.EditRollNum);
         //TextView status = convertView.findViewById(R.id.Status);
         //Switch EditStatus = convertView.findViewById(R.id.EditSwitch);
-        ImageView img = convertView.findViewById(R.id.imageView);
+        ImageView img = convertView.findViewById(R.id.img);
         Name.setText(list.getStudent_Name());
-        //String roll=list.getStudent_Roll();
-        Rollnum.setText(list.getStudent_Roll();
-        img.setImageResource(R.drawable.av);
-        if (list.isEnroll()) {
-            status.setText("Enrolled");
-        } else {
-            status.setText("Not Enrolled");
-        }
+        String roll=list.getStudent_Roll();
+        Rollnum.setText(list.getStudent_Roll());
+        img.setImageResource(R.drawable.profile);
+
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("sgasjcsachshcasjcksklcl",getContext().toString());
-                Log.d("sgasjcsasjcksklclhsdjh",StudentAdapter.this.toString());
-                Log.e("roll",Rollnum.toString());
+                //Log.d("sgasjcsachshcasjcksklcl",getContext().toString());
+                //Log.d("sgasjcsasjcksklclhsdjh",StudentAdapter.this.toString());
+                //Log.e("roll",Rollnum.toString());
                 DBHelper dbHelper = new DBHelper(getContext());
-                Log.d("roll",roll);
+                //Log.d("roll",roll);
                 dbHelper.Delete(roll);
                 remove(list);
             }
         });
-        Update.setOnClickListener(new View.OnClickListener() {
+        /*Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 click+=1;
@@ -98,8 +93,8 @@ public class StudentAdapter extends ArrayAdapter<Student> {
                     click=0;
                 }
             }
-        });
-        Cancel.setOnClickListener(new View.OnClickListener() {
+        });*/
+        /*Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Name.setVisibility(View.VISIBLE);
@@ -113,6 +108,8 @@ public class StudentAdapter extends ArrayAdapter<Student> {
                 click=0;
             }
         });
+
+         */
         return convertView;
     }
 }
