@@ -5,6 +5,13 @@ public class Student {
     private String Student_Name;
     private String Student_Roll;
 
+    @Override
+    public String toString() {
+        return "StudentModel{" +
+                "name='" + Student_Name + '\'' +
+                ", rollNumber=" + Student_Roll +
+                '}';
+    }
     public Student(int id, String student_Name, String student_Roll) {
         Id = id;
         Student_Name = student_Name;

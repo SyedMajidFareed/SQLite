@@ -21,13 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     // creating variables for our edittext, button and dbhelper
 
     private EditText studentNameEdt, studentRollEdt;
-    private Button addStudentBtn, viewAllStudentsBtn, deleteStudentBtn, updateStudentBtn;
+    private Button addStudentBtn, viewAllStudentsBtn;//, deleteStudentBtn, updateStudentBtn;
     private DbHelper dbHandler;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         studentNameEdt = findViewById(R.id.editText1);
         studentRollEdt = findViewById(R.id.editText2);
         addStudentBtn = findViewById(R.id.button);
-        updateStudentBtn = findViewById(R.id.button2);
-        deleteStudentBtn = findViewById(R.id.button3);
+        //updateStudentBtn = findViewById(R.id.button2);
+        //deleteStudentBtn = findViewById(R.id.button3);
         viewAllStudentsBtn = findViewById(R.id.button4);
-
+        listView = findViewById(R.id.list12);
 
 
         // creating a new dbhelper class
@@ -69,12 +71,31 @@ public class MainActivity extends AppCompatActivity {
                 studentRollEdt.setText("");
             }
         });
-        viewAllStudentsBtn.setOnClickListener(new View.OnClickListener() {
+        /*viewAllStudentsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // opening a new activity via a intent.
-                Intent i = new Intent(MainActivity.this, CustomizedListView.class);
-                startActivity(i);
+                DbHelper dbHelper = new DbHelper(MainActivity.this);
+                ArrayList<Student> studentArrayList = dbHelper.readStudents();
+                ArrayAdapter arrayAdapter = new ArrayAdapter<Student>
+                        (MainActivity.this, android.R.layout.simple_list_item_1,studentArrayList);
+                listView.setAdapter(arrayAdapter);
+            }
+        });
+
+         */
+        viewAllStudentsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //DBHelper dbHelper = new DBHelper(MainActivity.this);
+                //List<StudentModel> list = dbHelper.getAllStudents();
+//                ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
+//                        (MainActivity.this, android.R.layout.simple_list_item_1,list);
+//                listViewStudent.setAdapter(arrayAdapter);
+                ArrayList<Student> ListViewArray =  dbHandler.readStudents();
+
+                StudentAdapter adapter = new StudentAdapter(getBaseContext(), ListViewArray);
+                ListView listView = findViewById(R.id.listViewStudent);
+                listView.setAdapter(adapter);
             }
         });
     }

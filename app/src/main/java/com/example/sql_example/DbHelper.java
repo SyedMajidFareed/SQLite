@@ -57,7 +57,27 @@ class DbHelper extends SQLiteOpenHelper {
     }
     // we have created a new method for reading all the courses.
     public ArrayList<Student> readStudents() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        ArrayList<Student> studentArrayList = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (cursorCourses.moveToFirst()) {
+            do {
+                studentArrayList.add(new Student(cursorCourses.getInt(1),
+                        cursorCourses.getString(2),
+                        cursorCourses.getString(3) ));
+            } while (cursorCourses.moveToNext());
+
+        }
+
+        cursorCourses.close();
+        return studentArrayList;
+        /*
         // on below line we are creating a
+
         // readable database for reading our database.
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -81,6 +101,8 @@ class DbHelper extends SQLiteOpenHelper {
         // and returning our array list.
         cursorStudents.close();
         return studentArrayList;
+        */
+
     }
 
 }
