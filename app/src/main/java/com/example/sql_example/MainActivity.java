@@ -69,33 +69,23 @@ public class MainActivity extends AppCompatActivity {
                 studentRollEdt.setText("");
             }
         });
-        /*viewAllStudentsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DbHelper dbHelper = new DbHelper(MainActivity.this);
-                ArrayList<Student> studentArrayList = dbHelper.readStudents();
-                ArrayAdapter arrayAdapter = new ArrayAdapter<Student>
-                        (MainActivity.this, android.R.layout.simple_list_item_1,studentArrayList);
-                listView.setAdapter(arrayAdapter);
-            }
-        });
 
-         */
         viewAllStudentsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DBHelper dbHelper = new DBHelper(MainActivity.this);
-                List<Student> list = dbHandler.readStudents();
+/*                List<Student> list = dbHandler.readStudents();
                ArrayAdapter arrayAdapter = new ArrayAdapter<Student>
                         (MainActivity.this, android.R.layout.simple_list_item_1,list);
                 listView.setAdapter(arrayAdapter);
-                /*ArrayList<Student> ListViewArray =  dbHandler.readStudents();
+
+ */
+                ArrayList<Student> ListViewArray =  dbHandler.readStudents();
 
                 StudentAdapter adapter = new StudentAdapter(getBaseContext(), ListViewArray);
                 ListView listView = findViewById(R.id.listViewStudent);
                 listView.setAdapter(adapter);
 
-                 */
+
             }
         });
     }
