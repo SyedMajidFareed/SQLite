@@ -92,5 +92,12 @@ class DBHelper extends SQLiteOpenHelper {
         db.execSQL(deleteQuery);
         db.close();
     }
+    public void Update(String stuName, String stuRoll, String stuRollOriginal) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        String UpdateQuery = "UPDATE " + STUDENT_TABLE + " SET " + STUDENT_NAME + " = " +"'"+stuName+"' "+" , "+ STUDENT_ROLL +" = "+"'"+stuRoll+"' "+ " WHERE "+STUDENT_ROLL+" ="+ "'"+stuRollOriginal+"' ";
+
+        db.execSQL(UpdateQuery);
+        db.close();
+    }
 }
