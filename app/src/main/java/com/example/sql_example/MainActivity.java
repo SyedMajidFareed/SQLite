@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
                 listView.setAdapter(arrayAdapter);
 
  */
-                ArrayList<Student> ListViewArray =  dbHandler.readStudents();
+                ArrayList<Student> list =  dbHandler.readStudents();
 
-                StudentAdapter adapter = new StudentAdapter(getBaseContext(), ListViewArray);
+                StudentAdapter adapter = new StudentAdapter(getBaseContext(), list);
                 ListView listView = findViewById(R.id.listViewStudent);
                 listView.setAdapter(adapter);
 
