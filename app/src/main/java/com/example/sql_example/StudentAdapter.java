@@ -52,7 +52,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Context context = getContext();
+
                 Intent intent= new Intent(context, UpdateActivity.class);
                 intent.putExtra("name",name);
                 intent.putExtra("roll",roll);
