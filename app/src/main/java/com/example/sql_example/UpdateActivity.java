@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+        Log.e("inside", "inside");
         Intent intent= getIntent();
         StudentName = intent.getStringExtra("name");
         Studentrollnum = intent.getStringExtra("roll");
@@ -44,12 +46,13 @@ public class UpdateActivity extends AppCompatActivity {
                 DBHelper dbHandler = new DBHelper(UpdateActivity.this);
                 // on below line we are calling a method to add new
                 // student to sqlite data and pass all our values to it.
-                dbHandler.Update(studentName, origRoll, studentRoll);
+                dbHandler.Update(studentName, studentRoll, origRoll);
 
                 // after adding the data we are displaying a toast message.
                 Toast.makeText(UpdateActivity.this, "Student has been Updated.", Toast.LENGTH_SHORT).show();
                 nameText.setText("");
                 rollnumberText.setText("");
+                UpdateActivity.this.finish();
             }
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {

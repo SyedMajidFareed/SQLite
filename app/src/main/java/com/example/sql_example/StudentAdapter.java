@@ -19,8 +19,10 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class StudentAdapter extends ArrayAdapter<Student> {
+    private Context context;
     public StudentAdapter(@NonNull Context context, ArrayList<Student> ListViewArray) {
         super(context, R.layout.customlistview, ListViewArray);
+        this.context = context;
     }
 
     @Override
@@ -50,10 +52,11 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Context context = getContext();
+                //Context context = getContext();
                 Intent intent= new Intent(context, UpdateActivity.class);
                 intent.putExtra("name",name);
                 intent.putExtra("roll",roll);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
